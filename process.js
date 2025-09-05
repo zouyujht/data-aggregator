@@ -8,7 +8,17 @@ async function main() {
   const month = String(now.getMonth() + 1).padStart(2, '0');
   const day = String(now.getDate()).padStart(2, '0');
   const baseUrl = `https://node.freeclashnode.com/uploads/${year}/${month}/`;
-  const files = [0, 1, 2, 3, 4].map(i => `${baseUrl}${i}-${year}${month}${day}.txt`);
+  const files = [
+    ...[0, 1, 2, 3, 4].map(i => `${baseUrl}${i}-${year}${month}${day}.txt`),
+    'https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/yudou66.txt',
+    'https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/blues.txt',
+    'https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/clashmeta.txt',
+    'https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/ndnode.txt',
+    'https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/nodev2ray.txt',
+    'https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/nodefree.txt',
+    'https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/v2rayshare.txt',
+    'https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/wenode.txt'
+  ];
 
   let decodedContents = [];
 
