@@ -1,0 +1,12 @@
+{
+  "name": "document-aggregator",
+  "version": "1.0.0",
+  "description": "Aggregates and processes text files from URLs",
+  "main": "process.js",
+  "dependencies": {
+    "node-fetch": "^2.7.0"
+  },
+  "scripts": {
+    "start": "node process.js"
+  }
+}

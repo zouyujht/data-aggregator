@@ -1,0 +1,43 @@
+name: Process Documents
+on:
+  schedule:
+    - cron: '0 2 * * *' # Run daily at 10:00 Beijing time (02:00 UTC)
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  process:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: true
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run processing script
+        run: node process.js
+
+      - name: Upload output as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: base64-output
+          path: output.txt
+          retention-days: 7
+
+      - name: Commit and push output.txt
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add output.txt
+          if ! git diff --staged --quiet; then
+            git commit -m "Github Action Auto Updated"
+            git push --force
